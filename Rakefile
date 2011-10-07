@@ -1,6 +1,8 @@
 require "bundler/gem_tasks"
 require 'rake/testtask'
 
+APP_NAME = "scottjbarr-nasdaq"
+
 # Host or location to copy gem to. At the moment this is only a local copy
 # operation
 GEM_LOCAL = "/Users/scott/.gems-repository"
@@ -17,11 +19,10 @@ Rake::TestTask.new("test:units") { |test|
   # test.warning = true
 }
 
-
 task :test => ["test:units"]
 
 def get_version
-  Scottjbarr::Nasdaq::VERSION
+  Nasdaq::VERSION
 end
 
 task :upload_local do
