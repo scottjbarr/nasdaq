@@ -30,6 +30,10 @@ module Nasdaq
       market_status == "O"
     end
 
+    def change
+      price - previous_close
+    end
+
     def self.path(symbol)
       data = {
         :msg => "Last",

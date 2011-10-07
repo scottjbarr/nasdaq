@@ -46,4 +46,12 @@ class TestQuote < Test::Unit::TestCase
     assert quote.market_open?
   end
 
+  def test_should_have_change
+    stub_get(Nasdaq::Quote.uri("KO"), "ko.xml")
+
+    quote = Nasdaq::Quote.for("KO")
+
+    assert_in_delta 0.21, quote.change, 0.001
+  end
+
 end
