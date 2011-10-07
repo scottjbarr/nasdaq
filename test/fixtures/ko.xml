@@ -1,0 +1,15 @@
+<DocumentElement>
+  <Last>
+    <totVol>1646044</totVol>
+    <high>27.2000</high>
+    <low>26.9000</low>
+    <Price>27.1600</Price>
+    <ConsolidatedShares>3491156</ConsolidatedShares>
+    <ServerTime>10/7/2011 11:49:49 AM</ServerTime>
+    <RefreshTime>35000</RefreshTime>
+    <MarketStatus>O</MarketStatus>
+    <MarketCloseTime>16:0</MarketCloseTime>
+    <previousclose>26.95</previousclose>
+    <tradedate>10/7/2011 11:49:49 AM</tradedate>
+  </Last>
+</DocumentElement>
