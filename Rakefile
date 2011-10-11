@@ -38,5 +38,9 @@ task :sync_remote do
   system "cd #{GEM_LOCAL} && rsync -auvz -e 'ssh -i #{SSH_KEY}' . #{GEM_HOST_USER}@#{GEM_HOST}:/var/www/gems/"
 end
 
-task :publish => [ :test, :build, :upload_local, :sync_remote ]
+task :clean do
+  system "rm -rf pkg"
+end
+
+task :publish => [ :test, :build, :upload_local, :sync_remote, :clean]
 
