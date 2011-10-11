@@ -2,26 +2,28 @@ require 'test/test_helper'
 
 class TestQuote < Test::Unit::TestCase
 
+  include Nasdaq
+
   def setup
   end
 
   def test_should_have_path_for_symbol
     expected = "/aspx/NLS/NLSHandler.ashx?msg=Last&Symbol=KO&QESymbol=KO"
-    assert_equal expected, Nasdaq::Quote.path("KO")
+    assert_equal expected, Quote.path("KO")
   end
 
   def test_should_have_uri_for_symbol
-    uri = Nasdaq::Quote.uri("KO")
+    uri = Quote.uri("KO")
     assert_equal URI::HTTP, uri.class
 
-    expected = "http://www.nasdaq.com#{Nasdaq::Quote.path("KO")}"
+    expected = "http://www.nasdaq.com#{Quote.path("KO")}"
     assert_equal expected, uri.to_s
   end
 
   def test_should_have_quote_for_symbol
-    stub_get(Nasdaq::Quote.uri("KO"), "ko.xml")
+    stub_get(Quote.uri("KO"), "ko.xml")
 
-    quote = Nasdaq::Quote.for("KO")
+    quote = Quote.for("KO")
 
     assert_equal "KO", quote.symbol
     assert_equal 3491156, quote.consolidated_shares
@@ -38,17 +40,17 @@ class TestQuote < Test::Unit::TestCase
   end
 
   def test_should_have_open_market
-    stub_get(Nasdaq::Quote.uri("KO"), "ko.xml")
+    stub_get(Quote.uri("KO"), "ko.xml")
 
-    quote = Nasdaq::Quote.for("KO")
+    quote = Quote.for("KO")
 
     assert quote.market_open?
   end
 
   def test_should_have_change
-    stub_get(Nasdaq::Quote.uri("KO"), "ko.xml")
+    stub_get(Quote.uri("KO"), "ko.xml")
 
-    quote = Nasdaq::Quote.for("KO")
+    quote = Quote.for("KO")
 
     assert_in_delta 0.21, quote.change, 0.001
   end

@@ -42,7 +42,7 @@ class TestHistory < Test::Unit::TestCase
   end
 
   def test_should_parse_history
-    stub_get(Nasdaq::History.uri("MO", 480), "mo_history_1_month.csv")
+    stub_get(History.uri("MO", 480), "mo_history_1_month.csv")
 
     ary = History.for("MO")
 
