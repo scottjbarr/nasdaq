@@ -2,6 +2,7 @@ require "scottjbarr-nasdaq/version"
 require 'net/http'
 require 'cgi'
 require 'uri'
+require 'date'
 require 'nokogiri'
 require 'hashie'
 require 'active_support/core_ext/string/inflections'
