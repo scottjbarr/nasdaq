@@ -1,13 +1,8 @@
-require 'net/http'
-require 'cgi'
-require 'uri'
-require 'nokogiri'
-require 'hashie'
-require 'active_support/core_ext/string/inflections'
-
 module Nasdaq
 
   class Quote < Hashie::Dash
+
+    include Base
 
     property :symbol
     property :tot_vol
@@ -70,11 +65,6 @@ module Nasdaq
       end
 
       hash
-    end
-
-    # Convert a hash to an escaped query string
-    def self.get_form_data(params)
-      params.reduce("") { |m, v| m += "#{v[0]}=#{CGI.escape(v[1].to_s)}&" }.chop
     end
 
     def self.parse(body)

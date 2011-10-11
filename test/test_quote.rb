@@ -18,7 +18,6 @@ class TestQuote < Test::Unit::TestCase
     assert_equal expected, uri.to_s
   end
 
-
   def test_should_have_quote_for_symbol
     stub_get(Nasdaq::Quote.uri("KO"), "ko.xml")
 
