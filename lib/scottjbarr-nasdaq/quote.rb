@@ -43,10 +43,7 @@ module Nasdaq
     end
 
     def self.for(symbol)
-      uri = uri(symbol)
-      http = Net::HTTP.new(uri.host, uri.port)
-      response = http.get(uri.to_s)
-
+      response = get(uri(symbol))
       # p resp.status
       hash = parse(response.body)
       hash[:symbol] = symbol

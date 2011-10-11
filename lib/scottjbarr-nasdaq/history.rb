@@ -30,10 +30,7 @@ module Nasdaq
     end
 
     def self.for(symbol, months = 480)
-      uri = uri(symbol, months)
-      http = Net::HTTP.new(uri.host, uri.port)
-      response = http.get(uri.to_s)
-
+      response = get(uri(symbol, months))
       parse(response.body)
     end
 
