@@ -10,16 +10,19 @@ symbols = ARGV.sort.map { |s| s.upcase }
 
 if symbols.size == 0
   puts "Fetch one or more stock quotes from Nasdaq"
-  puts "Usage : price symbol symbol ..."
+  puts "Usage : quote symbol symbol ..."
   exit 1
 end
 
 require 'scottjbarr-nasdaq'
 
+# render header row
 puts "%-24s %-7s %9s %13s %13s" % ["Date", "Symbol", "Price", "Change ($)", "Change (%)"]
 
+# definite the quote output format
 FORMAT = "%-24s %-7s %9.2f %13s %13s"
 
+# get the quote for each symbol
 symbols.each { |symbol|
   q = Nasdaq::Quote.for(symbol)
 
