@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+#
+# Get a quote from Nasdaq
+#
+# Author : Scott Barr
+# Date   : 8 Oct 2011
+#
+
+symbols = ARGV.sort.map { |s| s.upcase }
+
+if symbols.size == 0
+  puts "Fetch one or more stock quotes from Nasdaq"
+  puts "Usage : price symbol symbol ..."
+  exit 1
+end
+
+require 'scottjbarr-nasdaq'
+
+puts "%-24s %-7s %9s %13s %13s" % ["Date", "Symbol", "Price", "Change ($)", "Change (%)"]
+
+FORMAT = "%-24s %-7s %9.2f %13s %13s"
+
+symbols.each { |symbol|
+  q = Nasdaq::Quote.for(symbol)
+
+  if q && q.price
+    puts FORMAT % [q.server_time, symbol, q.price, q.formatted_change, q.formatted_change_percent]
+  else
+    puts "Symbol '#{symbol}' not found"
+  end
+}

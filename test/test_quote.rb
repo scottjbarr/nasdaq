@@ -60,4 +60,30 @@ class TestQuote < Test::Unit::TestCase
     assert_equal expected, Quote.path("BRK/B")
   end
 
+  def test_should_have_formatted_change
+    stub_get(Quote.uri("KO"), "ko.xml")
+    quote = Quote.for("KO")
+    assert_equal "+0.21", quote.formatted_change
+  end
+
+  def test_should_have_formatted_negative_change
+    stub_get(Quote.uri("KO"), "ko.xml")
+    quote = Quote.for("KO")
+    quote.previous_close += 0.22
+    assert_equal "-0.01", quote.formatted_change
+  end
+
+  def test_should_have_formatted_change_percent
+    stub_get(Quote.uri("KO"), "ko.xml")
+    quote = Quote.for("KO")
+    assert_equal "+0.78%", quote.formatted_change_percent
+  end
+
+  def test_should_have_formatted_negative_change_percent
+    stub_get(Quote.uri("KO"), "ko.xml")
+    quote = Quote.for("KO")
+    quote.previous_close += 0.22
+    assert_equal "-0.04%", quote.formatted_change_percent
+  end
+
 end

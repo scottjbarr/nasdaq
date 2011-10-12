@@ -26,7 +26,29 @@ module Nasdaq
     end
 
     def change
-      price - previous_close
+      @change ||= price - previous_close
+    end
+
+    def change_percent
+      return nil if previous_close.nil?
+      @change_percent ||= (change / previous_close)
+    end
+
+    def sign
+      return @sign if @sign
+      if change.zero?
+        @sign = " "
+      else
+        @sign = change > 0 ? "+" : "-"
+      end
+    end
+
+    def formatted_change
+      sign + ("%0.2f" % change).gsub('-', '')
+    end
+
+    def formatted_change_percent
+      sign + ("%0.2f" % [change_percent * 100.0]).gsub('-', '') + '%'
     end
 
     def self.path(symbol)
