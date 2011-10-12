@@ -12,7 +12,7 @@ module Nasdaq
     property :shares_outstanding
 
     def self.path(symbol)
-      "/symbol/#{symbol.downcase}"
+      "/symbol/#{escape_symbol(symbol)}"
     end
 
     def self.uri(symbol)
@@ -60,6 +60,10 @@ module Nasdaq
       data.delete_if { |d| d[-1, 1] == ":" }
 
       data
+    end
+
+    def self.escape_symbol(symbol)
+      symbol.downcase.gsub('/', '-')
     end
 
   end

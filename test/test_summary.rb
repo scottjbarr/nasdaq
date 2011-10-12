@@ -27,4 +27,7 @@ class TestSummary < Test::Unit::TestCase
     assert_equal "NYSE", summary.stock_exchange
   end
 
+  def test_should_have_path_for_symbol_containing_forward_slash
+    assert_equal "/symbol/brk-b", Summary.path("BRK/B")
+  end
 end

@@ -19,7 +19,7 @@ module Nasdaq
       # there are 40 of these "zero" blocks
       params += 40.times.map { "0,0,0,0,0|" }.join()
 
-      params += "0,0,0,0,0-5#{months}-03NA000000#{symbol}-"
+      params += "0,0,0,0,0-5#{months}-03NA000000#{escape_symbol(symbol)}-"
       params += "&SF:4|5-WD=539-HT=395--XXCL-"
 
       "/ext/charts.dll?#{URI.encode(params)}"
@@ -60,6 +60,10 @@ module Nasdaq
       else
         value.to_f
       end
+    end
+
+    def self.escape_symbol(symbol)
+      symbol.upcase.gsub('/', "'")
     end
 
   end

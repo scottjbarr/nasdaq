@@ -55,4 +55,9 @@ class TestQuote < Test::Unit::TestCase
     assert_in_delta 0.21, quote.change, 0.001
   end
 
+  def test_should_have_path_for_symbol_with_forward_slash
+    expected = "/aspx/NLS/NLSHandler.ashx?msg=Last&Symbol=BRK.B&QESymbol=BRK%2FB"
+    assert_equal expected, Quote.path("BRK/B")
+  end
+
 end

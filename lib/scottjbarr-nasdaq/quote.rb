@@ -30,10 +30,11 @@ module Nasdaq
     end
 
     def self.path(symbol)
+      symbol = symbol.upcase
       data = {
         :msg => "Last",
-        :Symbol => symbol.upcase,
-        :QESymbol => symbol.upcase
+        :Symbol => escape_symbol(symbol),
+        :QESymbol => symbol
       }
       path = "/aspx/NLS/NLSHandler.ashx?#{get_form_data(data)}"
     end
@@ -88,6 +89,10 @@ module Nasdaq
       end
 
       name
+    end
+
+    def self.escape_symbol(symbol)
+      symbol.upcase.gsub('/', '.')
     end
 
   end
