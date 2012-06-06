@@ -27,10 +27,13 @@ module Nasdaq
     def self.parse(body)
       doc = Nokogiri::HTML.parse(body)
 
-      # parse the symbol and stock exchange
+      # parse the symbol
       symbol_details = doc.css("#sq_symbol-info")
       symbol = symbol_details.children.first.content.split(" ").first
-      stock_exchange = symbol_details.children.last.content.split(" ").last
+
+      # parse stock exchange
+      ex_details = doc.css("#sq_symbol-info .market_qn")
+      stock_exchange = ex_details.children.last.children.last.text
 
       # get the data table
       table_data = get_table_data(doc.css("table[@class='datatable1_qn']"))

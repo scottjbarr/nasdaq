@@ -17,12 +17,12 @@ class TestSummary < Test::Unit::TestCase
     assert_equal "http://#{SERVER}/symbol/mo", uri.to_s
   end
 
-  def test_should_get_summary_for_symbol
-    stub_get(Summary.uri("MO"), "mo_quote_and_summary.html")
+  def test_should_get_summary_for_mo
+    stub_get(Summary.uri("MO"), "mo_summary.html")
 
     summary = Summary.for("MO")
 
-    assert_equal 2071234000, summary.shares_outstanding
+    assert_equal 2034844000, summary.shares_outstanding
     assert_equal "MO", summary.symbol
     assert_equal "NYSE", summary.stock_exchange
   end
@@ -30,4 +30,15 @@ class TestSummary < Test::Unit::TestCase
   def test_should_have_path_for_symbol_containing_forward_slash
     assert_equal "/symbol/brk-b", Summary.path("BRK/B")
   end
+
+  def test_should_get_summary_for_aapl
+    stub_get(Summary.uri("AAPL"), "aapl_summary.html")
+
+    summary = Summary.for("AAPL")
+
+    assert_equal 932370000, summary.shares_outstanding
+    assert_equal "AAPL", summary.symbol
+    assert_equal "NASDAQ-GS", summary.stock_exchange
+  end
+
 end
