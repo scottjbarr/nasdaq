@@ -47,6 +47,25 @@ class TestQuote < Test::Unit::TestCase
     assert quote.market_open?
   end
 
+  def test_should_have_quote_for_endp_in_closed_market
+    stub_get(Quote.uri("ENDP"), "endp_quote.xml")
+
+    quote = Quote.for("ENDP")
+
+    assert_equal "ENDP", quote.symbol
+    assert_nil quote.consolidated_shares
+    assert_nil quote.high
+    assert_nil quote.low
+    assert_equal "16:0", quote.market_close_time
+    assert_equal "C", quote.market_status
+    assert_equal 33.02, quote.previous_close
+    assert_equal 33.02, quote.price
+    assert_equal 20000, quote.refresh_time
+    assert_equal "5/10/2012 9:17:18 AM", quote.server_time
+    assert_nil quote.tot_vol
+    assert_equal "5/10/2012 9:17:18 AM", quote.trade_date
+  end
+
   def test_should_have_change
     stub_get(Quote.uri("KO"), "ko.xml")
 

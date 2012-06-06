@@ -29,6 +29,13 @@ module Nasdaq
       @change ||= price - previous_close
     end
 
+    # Return the price if the market is open, otherwise return the price at
+    # previous close
+    def price
+      return self[:price] if market_open?
+      previous_close
+    end
+
     def change_percent
       return nil if previous_close.nil?
       @change_percent ||= (change / previous_close)
