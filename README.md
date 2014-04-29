@@ -4,6 +4,11 @@ This is an experiment in scraping quotes from Nasdaq.com.
 
 It touches Quotes, History, Summaries and Charts.
 
+## Testing
+
+  bundle install
+  bundle exec rake test
+
 ## Quotes
 
 To get started, let's check the price for Altria (MO) because everyone loves smoking, right?
@@ -150,38 +155,36 @@ The "27=10" causes the rendering of the RSI (Relative Strength Index)
 
   http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:1|8|27-SH:8=20|27=10-WD=539-HT=395-
 
-## Examples
+### Examples
 
-### Mountain
+#### Mountain
 
   curl "http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:1|8|5-SH:8=20-WD=539-HT=395-" > ko-mountain-1.gif
 
-### OHLC
+#### OHLC
 
   curl "http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:4|8|5-SH:8=20-WD=539-HT=395-" > ko-ohlc-1.gif
 
-### Candlestick
+#### Candlestick
 
   curl "http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:6|8|5-SH:8=20-WD=539-HT=395-" > ko-candlestick-1.gif
 
-### Line
+#### Line
 
   curl "http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:7|8|5-SH:8=20-WD=539-HT=395-" > ko-line-1.gif
 
-### Bar
+#### Bar
 
   curl "http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:43|8|5-SH:8=20-WD=539-HT=395-" > ko-bar-1.gif
 
-# RSS Feeds
+## RSS Feeds
 
 For example, this is the Altria RSS Feed on Nasdaq.
 
   http://articlefeeds.nasdaq.com/nasdaq/symbols?symbol=MO
 
 
-# Stock Exchange Names
-
-## NASDAQ
+## Stock Exchange Names
 
 NASDAQ-GM is short for NASDAQ Global Market.
 
@@ -190,3 +193,12 @@ NASDAQ-GS is short for NASDAQ Global Select Market.
 These are two different market tiers, both run by the National Association of Security Dealers (NASD).
 
 Stocks traded in either tier (the NASDAQ-GM tier and the NASDAQ-GS tier) count as NASDAQ stocks.
+
+
+# License
+
+The MIT License (MIT)
+
+Copyright (c) 2014 Scott Barr
+
+See [LICENSE.md](LICENSE.md)
