@@ -2,7 +2,29 @@
 
 This is an experiment in scraping quotes from Nasdaq.com.
 
-It touches Quotes, History, Summaries and Charts.
+It touches on Quotes, History, Summaries and Charts.
+
+## Testing
+
+    bundle install
+    bundle exec rake test
+
+## Example Usage
+
+    >> Nasdaq::Quote.for("MO")
+    => #<Nasdaq::Quote consolidated_shares=100 high=40.43 low=40.43 market_close_time="16:0" market_status="C" previous_close=39.93 price=40.43 refresh_time=20000 server_time="4/29/2014 9:10:15 AM" symbol="MO" tot_vol=6 trade_date="4/29/2014 9:10:15 AM">
+
+    >> Nasdaq::History.for("MO")
+    => #<Nasdaq::History close=39.93 date=#<Date: 2014-04-28 ((2456776j,0s,0n),+0s,2299161j)> high=40.15 low=39.22 open=39.22 volume=13563000>
+       #<Nasdaq::History close=39.11 date=#<Date: 2014-04-25 ((2456773j,0s,0n),+0s,2299161j)> high=39.11 low=38.2 open=38.4 volume=8560673>
+       #<Nasdaq::History close=38.4 date=#<Date: 2014-04-24 ((2456772j,0s,0n),+0s,2299161j)> high=38.8 low=38.07 open=38.34 volume=8667609>
+       ...
+       #<Nasdaq::History close=37.12 date=#<Date: 2014-03-28 ((2456745j,0s,0n),+0s,2299161j)> high=37.36 low=36.97 open=37.31 volume=5250508>
+
+    >> Nasdaq::Summary.for("MO")
+    => #<Nasdaq::Summary shares_outstanding=2034844000 stock_exchange="NYSE" symbol="MO">
+
+# Exploring HTTP Requests and Responses
 
 ## Quotes
 
@@ -193,27 +215,7 @@ Stocks traded in either tier (the NASDAQ-GM tier and the NASDAQ-GS tier) count
 as NASDAQ stocks.
 
 
-# Testing
-
-    bundle install
-    bundle exec rake test
-
-# Example Usage
-
-    >> Nasdaq::Quote.for("MO")
-    => #<Nasdaq::Quote consolidated_shares=100 high=40.43 low=40.43 market_close_time="16:0" market_status="C" previous_close=39.93 price=40.43 refresh_time=20000 server_time="4/29/2014 9:10:15 AM" symbol="MO" tot_vol=6 trade_date="4/29/2014 9:10:15 AM">
-
-    >> Nasdaq::History.for("MO")
-    => #<Nasdaq::History close=39.93 date=#<Date: 2014-04-28 ((2456776j,0s,0n),+0s,2299161j)> high=40.15 low=39.22 open=39.22 volume=13563000>
-       #<Nasdaq::History close=39.11 date=#<Date: 2014-04-25 ((2456773j,0s,0n),+0s,2299161j)> high=39.11 low=38.2 open=38.4 volume=8560673>
-       #<Nasdaq::History close=38.4 date=#<Date: 2014-04-24 ((2456772j,0s,0n),+0s,2299161j)> high=38.8 low=38.07 open=38.34 volume=8667609>
-       ...
-       #<Nasdaq::History close=37.12 date=#<Date: 2014-03-28 ((2456745j,0s,0n),+0s,2299161j)> high=37.36 low=36.97 open=37.31 volume=5250508>
-
-    >> Nasdaq::Summary.for("MO")
-    => #<Nasdaq::Summary shares_outstanding=2034844000 stock_exchange="NYSE" symbol="MO">
-
-## Contributing
+# Contributing
 
 If you would like to contribute, please create a pull request using the
 procedure below:
