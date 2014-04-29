@@ -19,7 +19,6 @@ module Nasdaq
 
     INTEGER_FIELDS = %w(consolidated_shares refresh_time tot_vol)
     DECIMAL_FIELDS = %w(high low previous_close price)
-    # DATE_FIELDS = %w(server_time trade_date)
 
     def market_open?
       market_status == "O"

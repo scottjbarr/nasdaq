@@ -1,12 +1,18 @@
-= How to query the nasdaq.com for prices
+# Nasdaq Scraper
 
-Let's check the price for Altria (MO) because everyone loves smoking, right?
+This is an experiment in scraping quotes from Nasdaq.com.
 
-== Query
+It touches Quotes, History, Summaries and Charts.
+
+## Quotes
+
+To get started, let's check the price for Altria (MO) because everyone loves smoking, right?
+
+### Query
 
   $ curl -i "http://www.nasdaq.com/quote.dll?page=dynamic&mode=data&symbol=MO&random=0.7634591432288283"
 
-== Response
+### Response
 
   HTTP/1.1 200 ok
   Content-Length: 113
@@ -49,7 +55,7 @@ OK, so after we smoke that tasty (oh so tasty!) tobacco, it's time for a Coke :)
 
   *KO|69.28|1.11|1.63%|11,587,911|up|Y|$&nbsp;69.35|$&nbsp;68.16|KO|Dec. 31, 1969|N/A|N/A|N|NYSE|N|Coca-Cola Company (The)|
 
-= Price History
+## Price History
 
 Lets find the price history for KO.
 
@@ -67,15 +73,15 @@ Here is 3 months of Altria price data
 
   http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0,0,0,0,00,0,0,0,0-5003-03NA000000MO-&SF:4|5-WD=539-HT=395--XCL-
 
-= Realtime Quotes
+## Realtime Quotes
 
 Quote for KO
 
-== Request
+### Request
 
   GET http://www.nasdaq.com/aspx/NLS/NLSHandler.ashx?msg=Last&Symbol=KO&QESymbol=KO
 
-== Response
+### Response
 
   <DocumentElement>
     <Last>
@@ -93,14 +99,14 @@ Quote for KO
     </Last>
   </DocumentElement>
 
-= Summary Data
+## Summary Data
 
 Get the summary data html page for Altria (MO)
 
 http://www.nasdaq.com/symbol/mo
 
 
-= Charts
+## Charts
 
 The charts are rendered by URL's like this...
 
@@ -144,38 +150,38 @@ The "27=10" causes the rendering of the RSI (Relative Strength Index)
 
   http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:1|8|27-SH:8=20|27=10-WD=539-HT=395-
 
-== Examples
+## Examples
 
-Mountain
+### Mountain
 
   curl "http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:1|8|5-SH:8=20-WD=539-HT=395-" > ko-mountain-1.gif
 
-OHLC
+### OHLC
 
   curl "http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:4|8|5-SH:8=20-WD=539-HT=395-" > ko-ohlc-1.gif
 
-Candlestick
+### Candlestick
 
   curl "http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:6|8|5-SH:8=20-WD=539-HT=395-" > ko-candlestick-1.gif
 
-Line
+### Line
 
   curl "http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:7|8|5-SH:8=20-WD=539-HT=395-" > ko-line-1.gif
 
-Bar
+### Bar
 
   curl "http://charting.nasdaq.com/ext/charts.dll?2-1-14-0-0-51-03NA000000KO-&SF:43|8|5-SH:8=20-WD=539-HT=395-" > ko-bar-1.gif
 
-= RSS Feeds
+# RSS Feeds
 
 For example, this is the Altria RSS Feed on Nasdaq.
 
   http://articlefeeds.nasdaq.com/nasdaq/symbols?symbol=MO
 
 
-= Stock Exchange Names
+# Stock Exchange Names
 
-== NASDAQ
+## NASDAQ
 
 NASDAQ-GM is short for NASDAQ Global Market.
 

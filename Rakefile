@@ -19,6 +19,14 @@ Rake::TestTask.new("test:units") { |test|
   # test.warning = true
 }
 
+task :console do
+  require 'irb'
+  require 'irb/completion'
+  require "#{APP_NAME}" # You know what to do.
+  ARGV.clear
+  IRB.start
+end
+
 task :test => ["test:units"]
 
 def get_version
